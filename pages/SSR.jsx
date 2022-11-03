@@ -1,10 +1,8 @@
-
-function ISR({ predios }) {
+function SSR({ predios }) {
 
   return (
     <div>
-      <h1>Aprendendo Next JS</h1>
-      <h2>{process.env.NEXT_PUBLIC_API_URL}</h2>
+      <h1>Aprendendo Next JS</h1>      
       <table id="tabelapredios">
         <thead>
           <tr>
@@ -25,24 +23,18 @@ function ISR({ predios }) {
           ))}
         </tbody>
       </table>
-      
-
     </div>
   )
 }
 
-export default ISR;
+export default SSR;
 
-
-export async function getStaticProps() {
-
+export async function getServerSideProps() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/predios`);
-  const predios = await res.json();
-
+  const predios = await res.json(); 
   return {
     props: {
       predios
-    },  revalidate: 30
-  };
+    }
+  }
 }
-

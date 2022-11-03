@@ -1,10 +1,9 @@
 
-function ISR({ predios }) {
+function SSG({ predios }) {
 
   return (
     <div>
       <h1>Aprendendo Next JS</h1>
-      <h2>{process.env.NEXT_PUBLIC_API_URL}</h2>
       <table id="tabelapredios">
         <thead>
           <tr>
@@ -31,18 +30,17 @@ function ISR({ predios }) {
   )
 }
 
-export default ISR;
+export default SSG;
 
 
 export async function getStaticProps() {
-
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/predios`);
   const predios = await res.json();
 
   return {
     props: {
       predios
-    },  revalidate: 30
+    }
   };
 }
 
